@@ -1,17 +1,8 @@
-# Quick Angular 1 SPA Starter
+# Linguistics Study Tools
 
-Useful for prototyping static sites with minimal MVC & API functionality.
+A collection of linguistics related study tools for students studying varying subfields of linguistics.
 
-### Installation / Usage
-
-```
-git clone https://github.com/nafeu/quick-angular1-spa-starter.git <PROJECT NAME>
-cd <PROJECT NAME>
-```
-
-Use your choice of development web server:
-
-ie. `php -S localhost:8000`
+Check it out [here](http://nafeu.com/lin-study-tools)
 
 ### Credits
 
