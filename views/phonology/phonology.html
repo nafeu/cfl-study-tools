@@ -27,5 +27,5 @@
 <input id="phonology-search" placeholder="Enter features" type="text" ng-model="tags">
 <div class="phonology-phoneme" ng-repeat="phoneme in data | filter:tag">
   <h3>{{phoneme.name}}</h3>
-  <p ng-repeat="tag in phoneme.tags">[ {{tag}} ]</p>
+  <p ng-repeat="tag in phoneme.tags">[{{tag}}]</p>
 </div>
