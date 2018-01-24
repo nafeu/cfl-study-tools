@@ -9,9 +9,13 @@ angular.module('myApp.phonology', ['ngRoute'])
   });
 }])
 
-.controller('PhonologyCtrl', function($scope) {
+.controller('PhonologyCtrl', ['$scope', '$log', function($scope, $log) {
 
   $scope.title = "Phonology";
+
+  $scope.log = function(message) {
+    $log.debug(message);
+  }
 
   $scope.tag = function(message) {
     if ($scope.tags) {
@@ -406,4 +410,4 @@ angular.module('myApp.phonology', ['ngRoute'])
   ];
 
 
-});
+}]);
