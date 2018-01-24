@@ -1,5 +1,31 @@
-<h2>{{ title }}</h2>
+<style type="text/css">
 
-<p>
-  Here are some tools for phonology
-</p>
+  #phonology-search {
+    padding: 10px;
+    border: 1px solid #666666;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .phonology-phoneme {
+    float: left;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    height: 350px;
+    border-radius: 5px;
+  }
+
+  .phonology-phoneme p {
+    margin: 0 0 0;
+  }
+
+</style>
+<h2>{{ title }}</h2>
+<hr>
+<h4>Consonant Feature Explorer</h4>
+<input id="phonology-search" placeholder="Enter features" type="text" ng-model="tags">
+<div class="phonology-phoneme" ng-repeat="phoneme in data | filter:tag">
+  <h3>{{phoneme.name}}</h3>
+  <p ng-repeat="tag in phoneme.tags">[ {{tag}} ]</p>
+</div>

@@ -98,6 +98,8 @@ body {
   padding-top: 50px;
 }
 
+input:focus {outline:none;}
+
 
 /* ==========================================================================
    Helper classes
