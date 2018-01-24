@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.about',
   'myApp.home',
+  'myApp.phonology',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');

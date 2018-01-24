@@ -9,6 +9,8 @@ angular.module('myApp.about', ['ngRoute'])
   });
 }])
 
-.controller('AboutCtrl', [function() {
+.controller('AboutCtrl', function($scope) {
 
-}]);
+  $scope.title = "About";
+
+});

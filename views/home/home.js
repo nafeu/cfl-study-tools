@@ -9,7 +9,8 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', [function() {
+.controller('HomeCtrl', function($scope) {
 
+  $scope.title = "Linguistics Study Tools";
 
-}]);
+});
