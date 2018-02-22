@@ -13,6 +13,8 @@ angular.module('myApp.phonology', ['ngRoute'])
 
   $scope.title = "Phonology";
 
+  $scope.tags = "";
+
   $scope.showFeatures = true;
 
   $scope.log = function(message) {
@@ -43,5 +45,27 @@ angular.module('myApp.phonology', ['ngRoute'])
       return true;
     }
   };
+
+  $scope.featureOptions = [
+    {name: "Consonantal", shorthand: "cons"},
+    {name: "Continuant", shorthand: "cont"},
+    {name: "Voicing", shorthand: "voice"}
+  ]
+
+  $scope.toggleInsert = function(option) {
+    if ($scope.tags.includes(option)) {
+      if ($scope.tags.includes("+" + option)) {
+        $scope.tags = $scope.tags.replace("+" + option, "-" + option);
+      }
+      else {
+        $scope.tags = $scope.tags.replace("-" + option, "");
+      }
+    } else {
+      $scope.tags += ", +" + option + ",";
+    }
+    $scope.tags = $scope.tags.trim();
+    $scope.tags = $scope.tags.replace(/(^,)|(,$)/g, "");
+    $scope.tags = $scope.tags.trim();
+  }
 
 }]);
