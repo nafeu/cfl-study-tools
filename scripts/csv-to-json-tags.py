@@ -39,7 +39,7 @@ Into the this json format:
 import sys, csv, json
 
 if len(sys.argv) != 3:
-    print("Error: invalid args\nUsage: csv-to-json-tags.py [SOURCE_PATH] [DESTINATION_PATH]")
+    print("Error: invalid args\nUsage: python csv-to-json-tags.py [SOURCE_PATH] [DESTINATION_PATH]")
 else:
     csv_file = csv.reader(open(sys.argv[1], newline=''), delimiter=' ', quotechar='|')
     export = {

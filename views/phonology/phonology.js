@@ -13,12 +13,19 @@ angular.module('myApp.phonology', ['ngRoute'])
 
   $scope.title = "Phonology";
 
+  $scope.showFeatures = true;
+
   $scope.log = function(message) {
     $log.debug(message);
   }
 
   $scope.data = null;
-  $http.get('/data/export.json')
+
+  var dataUrl = '/data/export.json';
+  if (window.location.hostname !== 'localhost') {
+    dataUrl = '/lin-study-tools' + dataUrl;
+  }
+  $http.get(dataUrl)
     .success(function(data, status, headers, config) {
       $scope.data = data.content;
     })
