@@ -54,7 +54,8 @@
   }
 
   #results {
-    max-height: 500px;
+    height: calc(100vh - 200px);
+    box-sizing: border-box;
     overflow-y: scroll;
   }
 
@@ -97,11 +98,9 @@
   }
 
 </style>
-<h2>{{ title }}</h2>
-<hr>
 <div class="row">
   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-    <h3>Explore</h3>
+    <h3>{{title}}</h3>
     <div id="feature-options-container">
       <p class="info-header">Feature Options</p>
       <div id="feature-options">

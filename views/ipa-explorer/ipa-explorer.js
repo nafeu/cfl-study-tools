@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('myApp.phonology', ['ngRoute'])
+angular.module('myApp.ipa-explorer', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/phonology', {
-    templateUrl: 'views/phonology/phonology.html',
-    controller: 'PhonologyCtrl'
+  $routeProvider.when('/ipa-explorer', {
+    templateUrl: 'views/ipa-explorer/ipa-explorer.html',
+    controller: 'IPAExplorerCtrl'
   });
 }])
 
-.controller('PhonologyCtrl', ['$scope', '$log', '$http', function($scope, $log, $http) {
+.controller('IPAExplorerCtrl', ['$scope', '$log', '$http', function($scope, $log, $http) {
 
-  $scope.title = "IPA Index";
+  $scope.title = "IPA Explorer";
 
   $scope.selectedFeatures = [];
   $scope.selectedCategories = [];

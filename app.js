@@ -5,7 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.about',
   'myApp.home',
-  'myApp.phonology',
+  'myApp.ipa-explorer',
   'myApp.dictionary',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
