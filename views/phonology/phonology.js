@@ -11,9 +11,10 @@ angular.module('myApp.phonology', ['ngRoute'])
 
 .controller('PhonologyCtrl', ['$scope', '$log', '$http', function($scope, $log, $http) {
 
-  $scope.title = "Phonology";
+  $scope.title = "IPA Index";
 
-  $scope.tags = "";
+  $scope.selectedFeatures = [];
+  $scope.selectedCategories = [];
 
   $scope.showFeatures = true;
 
@@ -22,6 +23,7 @@ angular.module('myApp.phonology', ['ngRoute'])
   }
 
   $scope.data = null;
+  $scope.meta = null;
 
   var dataUrl = '/data/export.json';
   if (window.location.hostname !== 'localhost') {
@@ -29,15 +31,29 @@ angular.module('myApp.phonology', ['ngRoute'])
   }
   $http.get(dataUrl)
     .success(function(data, status, headers, config) {
-      $scope.data = data.content;
+      $scope.data = data.phonemes;
+      $scope.meta = data.meta;
     })
     .error(function(data, status, headers, config) {});
 
-  $scope.tag = function(message) {
-    if ($scope.tags) {
-      return $scope.tags.replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
-        return message.tags.some(function(objTag){
-          return objTag.indexOf(tag) !== -1;
+  $scope.featureFilter = function(collection) {
+    if ($scope.selectedFeatures) {
+      return $scope.selectedFeatures.every(function(featureFilter) {
+        return collection.features.some(function(objfeatureFilter){
+          return objfeatureFilter === featureFilter;
+        });
+      });
+    }
+    else {
+      return true;
+    }
+  };
+
+  $scope.categoryFilter = function(collection) {
+    if ($scope.selectedCategories) {
+      return $scope.selectedCategories.every(function(categoryFilter) {
+        return collection.categories.some(function(objcategoryFilter){
+          return objcategoryFilter === categoryFilter;
         });
       });
     }
@@ -48,24 +64,48 @@ angular.module('myApp.phonology', ['ngRoute'])
 
   $scope.featureOptions = [
     {name: "Consonantal", shorthand: "cons"},
+    {name: "Sonorant", shorthand: "son"},
     {name: "Continuant", shorthand: "cont"},
-    {name: "Voicing", shorthand: "voice"}
+    {name: "Nasal", shorthand: "nas"},
+    {name: "Strident", shorthand: "strident"},
+    {name: "Lateral", shorthand: "lat"},
+    {name: "Voice", shorthand: "voice"},
+    {name: "Anterior", shorthand: "ant"},
+    {name: "Distributed", shorthand: "distr"},
+    {name: "Approximant", shorthand: "approx"},
+    {name: "High", shorthand: "high"},
+    {name: "Back", shorthand: "back"},
+    {name: "Low", shorthand: "low"},
+    {name: "Round", shorthand: "round"},
+    {name: "Tense", shorthand: "tense"},
   ]
 
-  $scope.toggleInsert = function(option) {
-    if ($scope.tags.includes(option)) {
-      if ($scope.tags.includes("+" + option)) {
-        $scope.tags = $scope.tags.replace("+" + option, "-" + option);
-      }
-      else {
-        $scope.tags = $scope.tags.replace("-" + option, "");
-      }
+  $scope.categoryOptions = [
+    "voiced",
+    "labial",
+    "consonant",
+    "vowel"
+  ]
+
+  $scope.toggleFeature = function(option) {
+    var plus_index = $scope.selectedFeatures.indexOf("+" + option);
+    var minus_index = $scope.selectedFeatures.indexOf("-" + option);
+    if (plus_index !== -1 && minus_index === -1) {
+      $scope.selectedFeatures.splice(plus_index, 1, "-" + option);
+    } else if (plus_index === -1 && minus_index !== -1) {
+      $scope.selectedFeatures.splice(minus_index, 1);
     } else {
-      $scope.tags += ", +" + option + ",";
+      $scope.selectedFeatures.push("+" + option);
     }
-    $scope.tags = $scope.tags.trim();
-    $scope.tags = $scope.tags.replace(/(^,)|(,$)/g, "");
-    $scope.tags = $scope.tags.trim();
+  }
+
+  $scope.toggleCategory = function(option) {
+    var index = $scope.selectedCategories.indexOf(option);
+    if (index !== -1) {
+      $scope.selectedCategories.splice(index, 1);
+    } else {
+      $scope.selectedCategories.push(option);
+    }
   }
 
 }]);
