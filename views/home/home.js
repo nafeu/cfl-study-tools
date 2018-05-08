@@ -11,6 +11,6 @@ angular.module('myApp.home', ['ngRoute'])
 
 .controller('HomeCtrl', function($scope) {
 
-  $scope.title = "Linguistics Study Tools";
+  $scope.title = "CFL Study Tools";
 
 });
