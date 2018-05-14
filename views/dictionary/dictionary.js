@@ -34,7 +34,7 @@ angular.module('myApp.dictionary', ['ngRoute'])
 
   var dataUrl = '/data/dict-export.json';
   if (window.location.hostname !== 'localhost') {
-    dataUrl = '/lin-study-tools' + dataUrl;
+    dataUrl = '/cfl-study-tools' + dataUrl;
   }
   $http.get(dataUrl)
     .success(function(data, status, headers, config) {
